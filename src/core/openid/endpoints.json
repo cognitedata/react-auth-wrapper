@@ -1,0 +1,15 @@
+{
+    "DISCOVER": {
+        "uri": ".well-known/openid-configuration",
+        "error_response": {
+            "type": "[issuer_problems]",
+            "value": "We got problems to retrieve Openid-configuration from your issuer."
+        }
+    },
+    "INVALID": {
+        "error_response": {
+            "type": "[uri_problems]",
+            "value": "We can't send a request to the provided uri."
+        }
+    }
+}

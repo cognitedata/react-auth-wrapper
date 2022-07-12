@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "declaration": true,
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "allowJs": true,
+        "incremental": true
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules/", "lib/", "samples/", "./jest.config.ts", "./src/__tests__"]
+  }

@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+<a href="https://cognite.com/">
+    <img src="./cognite_logo.png" alt="Cognite logo" title="Cognite" align="right" height="80" />
+</a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# @cognite/auth-wrapper
 
-## Available Scripts
+[![codecov](https://codecov.io/gh/cognitedata/auth-wrapper/branch/main/graph/badge.svg?token=3dhnnL5sHo)](https://codecov.io/gh/cognitedata/auth-wrapper)
 
-In the project directory, you can run:
+The `@cognite/auth-wrapper` is an OpenID Connect/OAuth 2.0 Wrapper library written in js that provides a convenient way to retrieve access token from any IdP that meets the openid pattern. You can use on client-side or server-side with JavaScript applications.
 
-### `npm start`
+## Getting Started
+There are some guides to help you to start using any of our available authentication methods.
+The guides are at [authentication.md](./guides/authentication.md).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Samples
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+There are small bare-bones typescript projects in the `samples/` directory.
+They show how to include to retrieve a token with cognite Auth Wrapper by different methods.
+The samples' [README.md](./samples/README.md) has instructions for running the samples.
 
-### `npm test`
+E.g: Client Credentials
+```ts
+import { CogniteAuthWrapper } from '@cognite/auth-wrapper';
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const token = await CogniteAuthWrapper.load(
+    'client_credentials',
+    {
+        authority: 'your_authority',
+        client_id: 'your_client_id',
+        grant_type: 'your_grant_type',
+        client_secret: 'your_client_secret',
+        scope: 'your_scope'
+    }
+).login();
+```
 
-### `npm run build`
+## License
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Contributing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Contributions welcome!
+For details about commiting changes, automated versioning and releases, see [Contributing](./CONTRIBUTING.md).
 
-### `npm run eject`
+### Testing
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This repo contains some integration tests that require some IdP credentials to run.
+You can use your own IdP credentials, talk to any of the contributors or leave an issue and it'll get sorted.
+Github Actions will run the test and has its own api key.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Run tests:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+npm install
+npm test
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+We use `jest` to run tests, see [their documentation](https://github.com/facebook/jest) for more information.
 
-## Learn More
+## Changelog
+Wondering about upcoming or previous changes to the auth-wrapper? Take a look at the [CHANGELOG](./CHANGELOG.md).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Versioning
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The libraries follow [Semantic Versioning](https://semver.org/).
+Package versions are updated automatically and individually based on commit messages.
