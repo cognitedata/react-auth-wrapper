@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 // src/App.jsx
 import React from "react";
 import { useAuth } from "react-oidc-context";

@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Microsoft Authentication Library for JavaScript (MSAL.js)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Microsoft Authentication Library for JavaScript enables both client-side and server-side JavaScript applications to authenticate users using [Azure AD](https://docs.microsoft.com/azure/active-directory/develop/v2-overview) for work and school accounts (AAD), Microsoft personal accounts (MSA), and social identity providers like Facebook, Google, LinkedIn, Microsoft accounts, etc. through [Azure AD B2C](https://docs.microsoft.com/azure/active-directory-b2c/active-directory-b2c-overview#identity-providers) service. It also enables your app to get tokens to access [Microsoft Cloud](https://www.microsoft.com/enterprise) services such as [Microsoft Graph](https://graph.microsoft.io).
 
-## Available Scripts
+## Repository
 
-In the project directory, you can run:
+### Core and wrapper libraries
 
-### `npm start`
+The [`lib`](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib) folder contains the source code for our libraries in active development. You will also find all the details about **installing the libraries** in their respective README.md.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Microsoft Authentication Library for Node.js v1.x](lib/msal-node/): A [Node.js](https://nodejs.org/en/) library that enables authentication and token acquisition with the Microsoft Identity platform in JavaScript applications. Implements the following OAuth 2.0 protocols and is [OpenID-compliant](https://docs.microsoft.com/azure/active-directory/develop/v2-protocols-oidc):
+  - [Authorization Code Grant](https://oauth.net/2/grant-types/authorization-code/) with [PKCE](https://oauth.net/2/pkce/)
+  - [Device Code Grant](https://oauth.net/2/grant-types/device-code/)
+  - [Refresh Token Grant](https://oauth.net/2/grant-types/refresh-token/)
+  - [Client Credential Grant](https://oauth.net/2/grant-types/client-credentials/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Microsoft Authentication Library for JavaScript v2.x](lib/msal-browser/): A browser-based, framework-agnostic browser library that enables authentication and token acquisition with the Microsoft Identity platform in JavaScript applications. Implements the OAuth 2.0 [Authorization Code Flow with PKCE](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow), and is [OpenID-compliant](https://docs.microsoft.com/azure/active-directory/develop/v2-protocols-oidc).
 
-### `npm test`
+- [Microsoft Authentication Library for React v1.x](lib/msal-react/): A wrapper of the msal-browser 2.x library for apps using React.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Microsoft Authentication Library for Angular v2.x](lib/msal-angular/): A wrapper of the msal-browser 2.x library for apps using Angular framework.
 
-### `npm run build`
+- [Microsoft Authentication Library for JavaScript v1.x](lib/msal-core/): A browser-based, framework-agnostic core library that enables authentication and token acquisition with the Microsoft Identity platform in JavaScript applications. Implements the OAuth 2.0 [Implicit Grant Flow](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-implicit-grant-flow), and is [OpenID-compliant](https://docs.microsoft.com/azure/active-directory/develop/v2-protocols-oidc).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Microsoft Authentication Library for Angular](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/msal-angular-v1/lib/msal-angular): A wrapper of the core 1.x library for apps using Angular framework.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Libraries in maintenance
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The [`maintenance`](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/maintenance) folder contains the source code for our libraries that are in maintenance mode (only receiving security fixes).
 
-### `npm run eject`
+- [Active Directory Authentication Library for Node.js](maintenance/adal-node): A [Node.js](https://nodejs.org/en/) library that enables authentication and token acquisition with the Microsoft Identity platform in Node.js applications.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- [Active Directory Authentication Library for JavaScript](maintenance/adal-angular): A browser-based, framework-agnostic core library that enables authentication and token acquisition with the Microsoft Identity platform in JavaScript applications. Implements the OAuth 1.0 Implicit Grant Flow.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [Microsoft Authentication Library for AngularJS](maintenance/msal-angularjs): A wrapper of the core 1.x library for apps using the AngularJS framework.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- [Azure Active Directory Passport.js Plug-In](maintenance/passport-azure-ad): a collection of [Passport](http://passportjs.org/) strategies to help you integrate with Azure Active Directory. It includes OpenID Connect, WS-Federation, and SAML-P authentication and authorization.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Package Structure
 
-## Learn More
+We ship a number of different packages which are meant for different platforms. You can see the relationship between packages and different authentication flows they implement below.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Package Structure](docs/diagrams/png/PackageStructure.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Samples
 
-### Code Splitting
+The [`samples`](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/samples) folder contains sample applications for our libraries. A complete list of samples can be found in the respective package folders or [on our wiki](https://github.com/AzureAD/microsoft-authentication-library-for-js/wiki/Samples).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Package versioning
 
-### Analyzing the Bundle Size
+All of our libraries follow [semantic versioning](https://semver.org). We recommend using the latest version of each library to ensure you have the latest security patches and bug fixes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Roadmap
 
-### Making a Progressive Web App
+Please check the [roadmap](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/roadmap.md) to see what we are working on and what we have planned for future releases.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Community Help and Support
 
-### Advanced Configuration
+- [GitHub Issues](../../issues) is the best place to ask questions, report bugs, and new request features.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- [FAQs](https://github.com/AzureAD/microsoft-authentication-library-for-js/wiki/FAQs) for access to our frequently asked questions.
 
-### Deployment
+- [Stack Overflow](http://stackoverflow.com/questions/tagged/msal) using "msal" and "msal.js" tag.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Contribute
 
-### `npm run build` fails to minify
+We enthusiastically welcome contributions and feedback. Please read the [contributing guide](contributing.md) before you begin.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Security Reporting
+
+If you find a security issue with our libraries or services [please report it to the Microsoft Security Response Center (MSRC)](https://aka.ms/report-security-issue) with as much detail as possible. Your submission may be eligible for a bounty through the [Microsoft Bounty](http://aka.ms/bugbounty) program. Please do not post security issues to GitHub Issues or any other public site. We will contact you shortly upon receiving the information. We encourage you to get notifications of when security incidents occur by visiting [this page](https://www.microsoft.com/msrc/technical-security-notifications) and subscribing to Security Advisory Alerts.
+
+## License
+
+Copyright (c) Microsoft Corporation.  All rights reserved. Licensed under the MIT License (the "License").
+
+## We Value and Adhere to the Microsoft Open Source Code of Conduct
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.

@@ -9,7 +9,7 @@ const oidcConfig = {
   authority:
     "https://login.microsoftonline.com/b7484399-37aa-4c28-9a37-a32f24c0621f",
   client_id: "43c6abf5-8aec-4648-941d-3af7552414ed",
-  redirect_uri: "http://localhost:3000/",
+  redirect_uri: "https://www.google.com/",
 };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

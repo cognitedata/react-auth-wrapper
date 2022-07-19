@@ -1,0 +1,21 @@
+{
+  "name": "msal-vue-sample",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@azure/msal-browser": "^2.26.0",
+    "element-plus": "^2.2.6",
+    "vue": "^3.2.37",
+    "vue-router": "^4.0.16"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.3",
+    "typescript": "^4.4.3",
+    "vite": "^2.6.4",
+    "vue-tsc": "^0.3.0"
+  }
+}
