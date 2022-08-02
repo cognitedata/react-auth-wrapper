@@ -1,0 +1,80 @@
+{
+  "name": "react-auth-wrapper",
+  "version": "1.0.0",
+  "description": "A wrapper for cognite api authentication in react",
+  "main": "dist/umd/react-auth-wrapper.js",
+  "types": "dist/types/react-auth-wrapper.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/react-auth-wrapper.js",
+      "require": "./dist/umd/react-auth-wrapper.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js && npm run build-types",
+    "build-types": "tsc --emitDeclarationOnly && api-extractor run",
+    "clean": "git clean -fdX dist",
+    "prepack": "npm run build",
+    "test": "tsc -p test/tsconfig.json && jest",
+    "lint": "eslint --max-warnings=0 --cache .",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cognitedata/react-auth-wrapper.git"
+  },
+  "keywords": [
+    "react",
+    "cognite",
+    "auth-wrapper",
+    "authentication"
+  ],
+  "author": "Rodrigo Ornellas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cognitedata/react-auth-wrapper/issues"
+  },
+  "homepage": "https://github.com/cognitedata/react-auth-wrapper#readme",
+  "dependencies": {
+    "oidc-client-ts": "^2.0.5",
+    "react-oidc-context": "^2.1.1"
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.18.10",
+    "@types/react": "^18.0.15",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/github": "^8.0.4",
+    "@semantic-release/npm": "^9.0.1",
+    "@semantic-release/release-notes-generator": "^10.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "codecov": "^3.8.3",
+    "conventional-changelog-conventionalcommits": "^4.6.3",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.4.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-header": "^3.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-import-helpers": "^1.2.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-testing-library": "^5.0.0",
+    "lint-staged": "^13.0.0",
+    "prettier": "^2.5.1",
+    "semantic-release": "^19.0.2",
+    "esbuild": "^0.14.1"
+  },
+  "engines": {
+    "node": ">=12.13.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
+  }
+}
