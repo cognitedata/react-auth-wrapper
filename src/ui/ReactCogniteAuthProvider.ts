@@ -1,3 +1,3 @@
-import { AuthProvider } from "react-oidc-context";
+import type { CogAuthContextProps } from "../core/authentication/wrapper/CogAuthContextProps";
 
-export const ReactCogniteAuthProvider = AuthProvider;
+export declare const ReactCogniteAuthProvider: (props: CogAuthContextProps) => JSX.Element;

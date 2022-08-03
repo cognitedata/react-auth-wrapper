@@ -1,8 +1,7 @@
 // Copyright 2022 Cognite AS
-
-import type { User } from "oidc-client-ts";
 import type { AuthMethod } from "../../auth-types";
-import type { CogAuthContextProps } from "../../CogAuthContextProps";
+import type AuthCredentials from "../AuthCredentials";
+import type { CogAuthContextProps } from "../CogAuthContextProps";
 import PkceAuth from "../../pkce";
 
 export class ReactAuthWrapperProvider {
@@ -15,7 +14,7 @@ export class ReactAuthWrapperProvider {
         return new this(authMethod, authContext);
     }
 
-    async login(refresh_token?: string): Promise<User | unknown> {
+    async login(refresh_token?: string): Promise<AuthCredentials | unknown> {
         if (this.method === "pkce") {
             return await PkceAuth.load(this.authContext).login(refresh_token);
         }
@@ -24,10 +23,11 @@ export class ReactAuthWrapperProvider {
     }
 
     public static requires(credentials: any) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         if (!credentials.method) {
-            console.log("Credentials does not have a method property");
+            console.log("Credentials does not specify a method");
             throw Error(
-                "options.credentials.method is required and must be of type string with one of this values: api, client_credentials, device, implicit, pkce",
+                "credentials.method is required and must be of type string with one of this values: pkce",
             );
         }
 

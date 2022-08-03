@@ -3,7 +3,7 @@ import type { User } from "oidc-client-ts";
 
 import AbstractAuth from "./abstract-auth";
 import type { AuthResponse } from "./auth-types";
-import type { CogAuthContextProps } from "./CogAuthContextProps";
+import type { CogAuthContextProps } from "./wrapper/CogAuthContextProps";
 
 class PkceAuth extends AbstractAuth {
     authResponse: AuthResponse;

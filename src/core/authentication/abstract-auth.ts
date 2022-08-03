@@ -2,7 +2,7 @@
 import type { User } from "oidc-client-ts";
 
 import type { IAuth } from "./auth-types";
-import type { CogAuthContextProps } from "./CogAuthContextProps";
+import type { CogAuthContextProps } from "./wrapper/CogAuthContextProps";
 
 abstract class AbstractAuth implements IAuth {
     constructor(protected authContext: CogAuthContextProps) {}
