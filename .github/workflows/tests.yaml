@@ -1,0 +1,44 @@
+name: Tests and Coverage
+
+on:
+ pull_request:
+    branches:
+      - main
+
+jobs:
+  tests:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    env:
+      COGNITE_AUTHORITY: ${{secrets.COGNITE_AUTHORITY}}
+      COGNITE_AZURE_TENANT_ID: ${{secrets.COGNITE_AZURE_TENANT_ID}}
+      COGNITE_CLIENT_ID: ${{secrets.COGNITE_CLIENT_ID}}
+      COGNITE_CLIENT_SECRET: ${{secrets.COGNITE_CLIENT_SECRET}}
+      COGNITE_GRANT_TYPE: ${{secrets.COGNITE_GRANT_TYPE}}
+      COGNITE_SCOPE: ${{secrets.COGNITE_SCOPE}}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Installing dependencies 🔧
+        run: npm install
+
+      - name: Running tests 🚀
+        run: npm test
+
+      - name: Upload coverage to Codecov 🚀
+        run: ./node_modules/.bin/codecov --disable=gcov --token=${{secrets.CODECOV_TOKEN}}
