@@ -8,10 +8,11 @@ export class ReactAuthWrapperProvider {
     private constructor(
         public method: AuthMethod,
         public authContext: CogAuthContextProps,
+        public tokenInspectUrl: string,
     ) {}
 
-    public static load(authMethod: AuthMethod, authContext: CogAuthContextProps) {
-        return new this(authMethod, authContext);
+    public static load(authMethod: AuthMethod, authContext: CogAuthContextProps, tokenInspectUrl: string) {
+        return new this(authMethod, authContext, tokenInspectUrl);
     }
 
     async login(refresh_token?: string): Promise<AuthCredentials | unknown> {

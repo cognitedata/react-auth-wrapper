@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import { useCogAuth } from '@cognite/react-auth-wrapper';
-import Callback from './Callback';
+import { CogAuthContextProps, useCogAuth } from '@cognite/react-auth-wrapper';
+import SelectCogniteProject from './SelectCogniteProject';
 
 const cogHome = {
   display : "flex",
@@ -11,7 +11,7 @@ const cogHome = {
 }
 
 function Home() {
-  const auth: any = useCogAuth();
+  const auth: CogAuthContextProps = useCogAuth();
 
   switch (auth.activeNavigator) {
     case "signinSilent":
@@ -31,7 +31,7 @@ function Home() {
   if (auth.isAuthenticated) {
     return (
       <div>
-       <Callback/>
+       <SelectCogniteProject/>
       </div>
     );
   }
@@ -39,7 +39,7 @@ function Home() {
   return (
     <>
       <div style={cogHome}>
-        <button type="button"  onClick={() => void auth.signinRedirect()}>
+        <button type="button"  onClick={() => void auth.signinPopup()}>
             Log in
         </button>
       </div>
