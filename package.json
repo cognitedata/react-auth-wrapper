@@ -24,10 +24,9 @@
     "eslint": "eslint --max-warnings 0 --ext .ts '{src,samples}/**/*'",
     "semantic-release": "semantic-release"
   },
-  "resolutions":
-  {
+  "resolutions": {
     "postcss": "^8.2.10",
-    "nth-check": "^2.0.1"
+    "nth-check": "2.0.1"
   },
   "release": {
     "branches": [
@@ -52,19 +51,21 @@
   },
   "dependencies": {
     "oidc-client-ts": "^2.0.5",
-    "react-oidc-context": "^2.1.1"
+    "react-oidc-context": "^2.1.1",
+    "react-scripts": "^5.0.1"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
     "oidc-client-ts": "^2.0.5",
+    "postcss": "^8.2.10",
+    "react": "^18.2.0",
     "react-oidc-context": "^2.1.1"
   },
   "devDependencies": {
-    "@svgr/webpack" : "^6.2.1",
     "@semantic-release/commit-analyzer": "^9.0.2",
     "@semantic-release/github": "^8.0.4",
     "@semantic-release/npm": "^9.0.1",
     "@semantic-release/release-notes-generator": "^10.0.3",
+    "@svgr/webpack": "^6.2.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^7.2.1",
@@ -74,10 +75,8 @@
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
-    "conventional-changelog-conventionalcommits": "^4.6.3",
-    "semantic-release": "^19.0.2",
-    "microbundle-crl": "^0.13.10",
     "babel-eslint": "^10.0.3",
+    "conventional-changelog-conventionalcommits": "^4.6.3",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
@@ -90,11 +89,13 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^2.2.0",
+    "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
+    "postcss": "^8.2.10",
     "prettier": "^2.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
+    "semantic-release": "^19.0.2",
     "typescript": "^3.7.5"
   },
   "files": [
