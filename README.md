@@ -1,8 +1,6 @@
 # react-auth-wrapper
 
-[![Stable Release](https://img.shields.io/npm/v/react-auth-wrapper.svg)](https://npm.im/react-auth-wrapper)
-[![CI](https://github.com/authts/react-auth-wrapper/actions/workflows/ci.yml/badge.svg)](https://github.com/authts/react-auth-wrapper/actions/workflows/ci.yml)
-[![Codecov](https://img.shields.io/codecov/c/github/authts/react-auth-wrapper)](https://app.codecov.io/gh/authts/react-auth-wrapper)
+[![Stable Release](https://img.shields.io/npm/v/react-auth-wrapper.svg)](https://npm.im/@cognite/react-auth-wrapper)
 
 Lightweight auth library using the
 [react-oidc-context](https://github.com/authts/react-oidc-context) library for React
@@ -46,7 +44,7 @@ feature of `oidc-client-ts` can be used.
 Using [npm](https://npmjs.org/)
 
 ```bash
-npm install react-auth-wrapper --save
+npm install @cognite/react-auth-wrapper --save
 ```
 
 ## Getting Started
@@ -85,40 +83,39 @@ import React from "react";
 import { useCogAuth } from "@cognite/react-auth-wrapper";
 
 function App() {
-    const auth = useCogAuth();
+  const auth = useCogAuth();
 
-    switch (auth.activeNavigator) {
-        case "signinSilent":
-            return <div>Signing you in...</div>;
-        case "signoutRedirect":
-            return <div>Signing you out...</div>;
-    }
+  switch (auth.activeNavigator) {
+    case "signinSilent":
+      return <div>Signing you in...</div>;
+    case "signoutRedirect":
+      return <div>Signing you out...</div>;
+  }
 
-    if (auth.isLoading) {
-        return <div>Loading...</div>;
-    }
+  if (auth.isLoading) {
+    return <div>Loading...</div>;
+  }
 
-    if (auth.error) {
-        return <div>Oops... {auth.error.message}</div>;
-    }
+  if (auth.error) {
+    return <div>Oops... {auth.error.message}</div>;
+  }
 
-    if (auth.isAuthenticated) {
-        return (
-        <div>
-            Hello {auth.user?.profile.sub}{" "}
-            <button onClick={() => void auth.removeUser()}>Log out</button>
-        </div>
-        );
-    }
+  if (auth.isAuthenticated) {
+    return (
+      <div>
+        Hello {auth.user?.profile.sub}{" "}
+        <button onClick={() => void auth.removeUser()}>Log out</button>
+      </div>
+    );
+  }
 
-    return <button onClick={() => void auth.signinPopup()}>Log in</button>;
+  return <button onClick={() => void auth.signinPopup()}>Log in</button>;
 }
 
 export default App;
 ```
 
 You **must** provide an implementation of `onSigninCallback` to `oidcConfig` to remove the payload from the URL upon successful login. Otherwise if you refresh the page and the payload is still there, `signinSilent` - which handles renewing your token - won't work.
-
 
 ### Use with a Class Component
 
@@ -131,11 +128,11 @@ import React from "react";
 import { withAuth } from "react-oidc-wrapper";
 
 class Profile extends React.Component {
-    render() {
-        // `this.props.auth` has all the same properties as the `useAuth` hook
-        const auth = this.props.auth;
-        return <div>Hello {auth.user?.profile.sub}</div>;
-    }
+  render() {
+    // `this.props.auth` has all the same properties as the `useAuth` hook
+    const auth = this.props.auth;
+    return <div>Hello {auth.user?.profile.sub}</div>;
+  }
 }
 
 export default withAuth(Profile);
@@ -151,36 +148,36 @@ import React from "react";
 import { useAuth } from "@cognite/react-auth-wrapper";
 
 const Posts = () => {
-    const auth = useCogAuth();
-    const [posts, setPosts] = useState(null);
+  const auth = useCogAuth();
+  const [posts, setPosts] = useState(null);
 
-    React.useEffect(() => {
-        (async () => {
-            try {
-                const token = auth.user?.access_token;
-                const response = await fetch("https://api.example.com/posts", {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                setPosts(await response.json());
-            } catch (e) {
-                console.error(e);
-            }
-        })();
-    }, [auth]);
+  React.useEffect(() => {
+    (async () => {
+      try {
+        const token = auth.user?.access_token;
+        const response = await fetch("https://api.example.com/posts", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setPosts(await response.json());
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, [auth]);
 
-    if (!posts) {
-        return <div>Loading...</div>;
-    }
+  if (!posts) {
+    return <div>Loading...</div>;
+  }
 
-    return (
-        <ul>
-        {posts.map((post, index) => {
-            return <li key={index}>{post}</li>;
-        })}
-        </ul>
-    );
+  return (
+    <ul>
+      {posts.map((post, index) => {
+        return <li key={index}>{post}</li>;
+      })}
+    </ul>
+  );
 };
 
 export default Posts;
@@ -191,30 +188,32 @@ As **not** a child of `AuthProvider` (e.g. redux slice) when using local storage
 
 ```jsx
 // src/slice.js
-import { User } from "oidc-client-ts"
+import { User } from "oidc-client-ts";
 
 function getUser() {
-    const oidcStorage = localStorage.getItem(`oidc.user:<your authority>:<your client id>`)
-    if (!oidcStorage) {
-        return null;
-    }
+  const oidcStorage = localStorage.getItem(
+    `oidc.user:<your authority>:<your client id>`
+  );
+  if (!oidcStorage) {
+    return null;
+  }
 
-    return User.fromStorageString(oidcStorage);
+  return User.fromStorageString(oidcStorage);
 }
 
 export const getPosts = createAsyncThunk(
-    "store/getPosts",
-    async () => {
-        const user = getUser();
-        const token = user?.access_token;
-        return fetch("https://api.example.com/posts", {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-    },
-    // ...
-)
+  "store/getPosts",
+  async () => {
+    const user = getUser();
+    const token = user?.access_token;
+    return fetch("https://api.example.com/posts", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+  // ...
+);
 ```
 
 ### Adding event listeners
@@ -227,18 +226,22 @@ import React from "react";
 import { useCogAuth } from "@cognite/react-auth-wrapper";
 
 function App() {
-    const auth = useCogAuth();
+  const auth = useCogAuth();
 
-    React.useEffect(() => {
-        // the `return` is important - addAccessTokenExpiring() returns a cleanup function
-        return auth.events.addAccessTokenExpiring(() => {
-            if (alert("You're about to be signed out due to inactivity. Press continue to stay signed in.")) {
-                auth.signinSilent();
-            }
-        })
-    }, [auth.events, auth.signinSilent])
+  React.useEffect(() => {
+    // the `return` is important - addAccessTokenExpiring() returns a cleanup function
+    return auth.events.addAccessTokenExpiring(() => {
+      if (
+        alert(
+          "You're about to be signed out due to inactivity. Press continue to stay signed in."
+        )
+      ) {
+        auth.signinSilent();
+      }
+    });
+  }, [auth.events, auth.signinSilent]);
 
-    return <button onClick={() => void auth.signinRedirect()}>Log in</button>;
+  return <button onClick={() => void auth.signinRedirect()}>Log in</button>;
 }
 
 export default App;
