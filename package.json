@@ -23,6 +23,11 @@
     "eslint": "eslint --max-warnings 0 --ext .ts '{src,samples}/**/*'",
     "semantic-release": "semantic-release"
   },
+  "resolutions":
+  {
+    "postcss": "^8.2.10",
+    "nth-check": "^2.0.1"
+  },
   "release": {
     "branches": [
       "main"
@@ -54,6 +59,7 @@
     "react-oidc-context": "^2.1.1"
   },
   "devDependencies": {
+    "@svgr/webpack" : "^6.2.1",
     "@semantic-release/commit-analyzer": "^9.0.2",
     "@semantic-release/github": "^8.0.4",
     "@semantic-release/npm": "^9.0.1",
