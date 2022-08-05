@@ -1,6 +1,6 @@
 {
   "name": "@cognite/react-auth-wrapper",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A wrapper for cognite api authentication in react",
   "author": "rodrigo.ornellas@cognite.com",
   "license": "MIT",
@@ -15,6 +15,7 @@
   "engines": {
     "node": ">=10"
   },
+  "private":"false",
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
