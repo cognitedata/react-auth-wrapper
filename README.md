@@ -73,7 +73,7 @@ ReactDOM.render(
 );
 ```
 
-Use the `useAuth` hook in your components to access authentication state
+Use the `useCogAuth` hook in your components to access authentication state
 (`isLoading`, `isAuthenticated` and `user`) and authentication methods
 (`signinRedirect`, `removeUser` and `signOutRedirect`):
 
@@ -116,6 +116,69 @@ export default App;
 ```
 
 You **must** provide an implementation of `onSigninCallback` to `oidcConfig` to remove the payload from the URL upon successful login. Otherwise if you refresh the page and the payload is still there, `signinSilent` - which handles renewing your token - won't work.
+
+## Integrating with Cognite JS SDK
+
+Here is an example of how to integrate with Cognite JS SDK (notice that you'll need to import **@cognite/sdk 7.8.1 or higher** in your project).
+
+```jsx
+import { Asset, CogniteClient } from '@cognite/sdk';
+import React, { useState } from 'react';
+import { useCogAuth } from '@cognite/react-auth-wrapper';
+import { ReactAuthWrapperProvider, CogniteProjectService } from '@cognite/react-auth-wrapper';
+
+function ListAssets() {
+  const authContext: any = useCogAuth();
+
+  const [posts, setPosts] = useState<Asset[]>([]);
+
+  React.useEffect(() => {
+    const cogniteProjectService = new CogniteProjectService();
+
+    (async () => {
+      try {
+        const projects = await cogniteProjectService.loadFromAuthContext(authContext);
+
+        const cogniteClient = new CogniteClient({
+          appId: "Authwrapper SDK samples",
+          project: projects[0].projectUrlName,
+          baseUrl: "https://api.cognitedata.com",
+          authentication: {
+            provider: ReactAuthWrapperProvider,
+            credentials: {
+              method: 'pkce',
+              authContext: authContext,
+            }
+          }
+        });
+
+        const response = await cogniteClient.assets.list();
+        setPosts(response.items);
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, [authContext]);
+
+  if (!posts) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <>
+      <div className="App">
+        {posts.map((post, index) => {
+          return <li key={index}>Assets here {post.name}</li>;
+        })}
+      </div>
+    </>
+  );
+}
+
+export default ListAssets;
+```
+
+You can find a complete example [here](https://github.com/cognitedata/cognite-sdk-js/tree/master/samples/react/react-auth-wrapper)
 
 ### Use with a Class Component
 
