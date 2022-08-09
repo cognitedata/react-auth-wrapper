@@ -9,7 +9,7 @@ function SelectCogniteProject() {
   React.useEffect(() => {
     (async () => {
       try {
-        const cogniteProjectService = new CogniteProjectService();
+        const cogniteProjectService = new CogniteProjectService('greenfield');
         const projects = await cogniteProjectService.loadFromAuthContext(authContext);
         setList(projects);
       } catch (e) {
