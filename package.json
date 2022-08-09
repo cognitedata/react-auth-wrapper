@@ -1,6 +1,6 @@
 {
   "name": "@cognite/react-auth-wrapper",
-  "version": "0.0.2",
+  "version": "1.1.1",
   "description": "A wrapper for cognite api authentication in react",
   "author": "rodrigo.ornellas@cognite.com",
   "license": "MIT",
