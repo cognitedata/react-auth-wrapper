@@ -1,4 +1,7 @@
-# react-auth-wrapper
+# [DEPRECATED] react-auth-wrapper
+
+> [!NOTE]
+> This package is deprecated. We suggest to use 3rd party alternatives like [react-oidc-context](https://github.com/authts/react-oidc-context).
 
 [![Stable Release](https://img.shields.io/npm/v/react-auth-wrapper.svg)](https://npm.im/@cognite/react-auth-wrapper)
 
@@ -10,12 +13,16 @@ single page applications (SPA). Support for
 
 ## Table of Contents
 
-- [Documentation](#documentation)
-- [Installation](#installation)
-- [Getting Started](#getting-started)
-- [Contributing](#contributing)
-- [Influences](#influences)
-- [License](#license)
+- [\[DEPRECATED\] react-auth-wrapper](#deprecated-react-auth-wrapper)
+  - [Table of Contents](#table-of-contents)
+  - [Documentation](#documentation)
+  - [Installation](#installation)
+  - [Getting Started](#getting-started)
+    - [Use with a Class Component](#use-with-a-class-component)
+    - [Call a protected API](#call-a-protected-api)
+    - [Adding event listeners](#adding-event-listeners)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Documentation
 
